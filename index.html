@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerano Health Partners — Practice medicine. We'll handle the rest.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#F8F4EE;color:#1A0A0F;font-family:'Montserrat',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,244,238,0.97);border-bottom:1px solid rgba(123,20,39,0.14);backdrop-filter:blur(12px);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-name{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#7B1427;}
+.nav-sub{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(123,20,39,0.5);}
+.nav-right{display:flex;align-items:center;gap:0;}
+.nav-link{padding:0 16px;height:64px;line-height:64px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6B6B6B;text-decoration:none;}
+.nav-link:hover{color:#7B1427;}
+.nav-cta{padding:10px 22px;background:#7B1427;color:#fff;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-left:16px;}
+.nav-cta:hover{background:#A82040;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:#7B1427;}
+.drawer{display:none;position:fixed;top:64px;left:0;right:0;z-index:998;background:#F8F4EE;border-bottom:1px solid rgba(123,20,39,0.14);padding:20px 40px 28px;}
+.drawer.open{display:block;}
+.drawer a{display:block;padding:12px 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6B6B6B;text-decoration:none;border-bottom:1px solid rgba(123,20,39,0.07);}
+.drawer a:hover{color:#7B1427;}
+.drawer .dcta{margin-top:16px;display:block;padding:14px;background:#7B1427;color:#fff;text-align:center;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:none;}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:64px;}
+.scenes{position:absolute;inset:0;}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;}
+.scene.active{opacity:1;}
+.s1{background:#0d1a2a;}
+.s1::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse at 50% 25%,rgba(180,210,255,.2) 0%,transparent 55%);}
+.s2{background:#0a1520;}
+.s2::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(123,20,39,.22) 0%,transparent 55%);animation:glow 4s ease-in-out infinite alternate;}
+.s2::after{content:’’;position:absolute;inset:0;background-image:linear-gradient(rgba(123,20,39,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(123,20,39,.07) 1px,transparent 1px);background-size:64px 64px;}
+.s3{background:#160e08;}
+.s3::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse at 50% 15%,rgba(255,200,110,.13) 0%,transparent 50%);animation:warm 3.5s ease-in-out infinite alternate;}
+@keyframes glow{from{opacity:.7}to{opacity:1}}
+@keyframes warm{from{opacity:.7}to{opacity:1}}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(92,15,29,.88) 0%,rgba(123,20,39,.65) 42%,rgba(10,10,15,.45) 100%);}
+.hero-content{position:relative;z-index:2;padding:0 56px;max-width:800px;}
+.h-ey{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.h-ey::before{content:’’;width:32px;height:1px;background:rgba(255,255,255,.5);}
+.h-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(44px,6vw,80px);font-weight:300;line-height:1.05;color:#fff;margin-bottom:24px;}
+.h-title strong{font-weight:700;font-style:italic;color:rgba(255,205,205,.95);}
+.h-tag{font-family:‘Cormorant Garamond’,serif;font-size:clamp(18px,2vw,24px);font-weight:300;font-style:italic;color:rgba(255,255,255,.75);margin-bottom:44px;padding-left:18px;border-left:3px solid rgba(255,255,255,.5);line-height:1.55;}
+.h-tag em{color:#fff;font-style:normal;font-weight:500;}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-p{padding:14px 36px;background:#7B1427;color:#fff;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background .3s;}
+.btn-p:hover{background:#A82040;}
+.btn-s{padding:14px 36px;background:transparent;color:#fff;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,.5);transition:all .3s;}
+.btn-s:hover{background:rgba(255,255,255,.1);}
+.sdots{position:absolute;bottom:36px;left:56px;z-index:2;display:flex;gap:8px;}
+.sdot{width:24px;height:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:all .4s;}
+.sdot.active{background:#fff;width:40px;}
+.slabel{position:absolute;bottom:44px;right:56px;z-index:2;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+
+/* ── TICKER ── */
+.ticker{background:#7B1427;padding:12px 0;overflow:hidden;}
+.ticker-track{display:flex;animation:tick 28s linear infinite;white-space:nowrap;}
+.titem{flex-shrink:0;padding:0 40px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:12px;}
+.tdot{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%;flex-shrink:0;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.section-pad{padding:100px 56px;}
+.sec-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#7B1427;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:’’;width:22px;height:1px;background:#7B1427;}
+.eyebrow-center{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#7B1427;margin-bottom:18px;text-align:center;}
+.sec-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(30px,3.5vw,50px);font-weight:300;line-height:1.15;color:#1A0A0F;margin-bottom:18px;}
+.sec-title strong{font-weight:700;color:#7B1427;}
+.sec-title-center{font-family:‘Cormorant Garamond’,serif;font-size:clamp(30px,3.5vw,50px);font-weight:300;line-height:1.15;color:#1A0A0F;margin-bottom:18px;text-align:center;}
+.sec-title-center strong{font-weight:700;color:#7B1427;}
+.sec-body{font-size:13px;font-weight:300;color:#6B6B6B;line-height:1.9;}
+
+/* ── TWO COL LAYOUT — the bulletproof version ── */
+/*
+All two-column sections use this pattern:
+.two-col = flex container, wraps to single col on small screens
+.col-left / .col-right = flex children with explicit widths
+*/
+.two-col{display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start;max-width:1200px;margin:0 auto;}
+.col-left{flex:1;min-width:300px;}
+.col-right{flex:1;min-width:300px;}
+.col-left-wide{flex:1.1;min-width:300px;}
+.col-right-wide{flex:0.9;min-width:280px;}
+
+/* ── HUB SECTION ── */
+.hub-section{padding:100px 56px;background:#F8F4EE;position:relative;}
+.hub-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.srow{display:flex;align-items:center;gap:12px;margin-top:14px;}
+.sico{width:38px;height:38px;background:rgba(123,20,39,.07);border:1px solid rgba(123,20,39,.15);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.srtitle{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#7B1427;font-weight:500;}
+.srsub{font-size:11px;color:#6B6B6B;font-weight:300;}
+.hub-svg-wrap{width:100%;max-width:440px;}
+.dl1{animation:dflow 2.2s linear infinite;}
+.dl2{animation:dflow 2.2s linear infinite .73s;}
+.dl3{animation:dflow 2.2s linear infinite 1.47s;}
+@keyframes dflow{0%{stroke-dashoffset:100;opacity:0}15%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.ca{animation:caura 2.8s ease-in-out infinite;}
+@keyframes caura{0%,100%{r:56;opacity:.1}50%{r:70;opacity:.22}}
+.np{animation:nPulse 3s ease-in-out infinite;}
+.np:nth-child(2n){animation-delay:1.5s;}
+@keyframes nPulse{0%,100%{opacity:.8}50%{opacity:1}}
+
+/* ── SERVICES ── */
+.svcs-section{padding:100px 56px;background:#fff;position:relative;}
+.svcs-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.svcs-hdr{text-align:center;max-width:580px;margin:0 auto 56px;}
+.svcs-grid{display:flex;flex-wrap:wrap;gap:2px;max-width:1200px;margin:0 auto;}
+.sc{flex:1;min-width:240px;padding:40px 28px;background:#F8F4EE;border:1px solid rgba(123,20,39,.08);position:relative;overflow:hidden;transition:all .3s;}
+.sc::after{content:’’;position:absolute;bottom:0;left:0;right:0;height:0;background:#7B1427;transition:height .3s;}
+.sc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(123,20,39,.1);}
+.sc:hover::after{height:3px;}
+.sn{font-family:‘Cormorant Garamond’,serif;font-size:48px;font-weight:300;color:rgba(123,20,39,.1);line-height:1;margin-bottom:14px;}
+.si{width:40px;height:40px;border:1px solid rgba(123,20,39,.2);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:16px;}
+.stitle{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:#1A0A0F;margin-bottom:8px;}
+.sdesc{font-size:12px;font-weight:300;color:#6B6B6B;line-height:1.8;margin-bottom:16px;}
+.slist{display:flex;flex-direction:column;gap:5px;}
+.slist li{font-size:11px;color:#6B6B6B;font-weight:300;list-style:none;display:flex;align-items:center;gap:7px;}
+.slist li::before{content:’’;width:3px;height:3px;background:#7B1427;border-radius:50%;flex-shrink:0;}
+
+/* ── HOW IT WORKS ── */
+.clin-section{padding:100px 56px;background:#F8F4EE;position:relative;}
+.clin-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.ws{display:flex;align-items:center;gap:12px;padding:13px 16px;background:#fff;border:1px solid rgba(123,20,39,.09);margin-bottom:3px;position:relative;overflow:hidden;opacity:0;animation:wrev .5s ease forwards;}
+@keyframes wrev{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.ws:nth-child(1){animation-delay:.2s}.ws:nth-child(2){animation-delay:.4s}.ws:nth-child(3){animation-delay:.6s}.ws:nth-child(4){animation-delay:.8s}.ws:nth-child(5){animation-delay:1s}.ws:nth-child(6){animation-delay:1.2s}
+.wi{width:32px;height:32px;background:#7B1427;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.winfo{flex:1;}
+.wl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#7B1427;font-weight:500;margin-bottom:1px;}
+.wd{font-size:10px;color:#6B6B6B;font-weight:300;}
+.wb{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;white-space:nowrap;}
+.wbg{background:rgba(34,139,34,.1);color:#228B22}.wba{background:rgba(196,122,0,.1);color:#C47A00}.wbr{background:rgba(123,20,39,.08);color:#7B1427}
+
+/* ── WHO WE ARE ── */
+.who-section{padding:100px 56px;background:#fff;position:relative;}
+.who-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.who-header{text-align:center;max-width:680px;margin:0 auto 72px;}
+.who-ey{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#7B1427;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.who-ey::before{content:’’;width:22px;height:1px;background:#7B1427;}
+.who-hl{font-family:‘Cormorant Garamond’,serif;font-size:clamp(28px,3vw,44px);font-weight:300;line-height:1.12;color:#1A0A0F;margin-bottom:28px;}
+.who-hl strong{font-weight:700;color:#7B1427;}
+.who-body{font-size:13px;font-weight:300;color:#6B6B6B;line-height:2;margin-bottom:16px;}
+.who-body em{color:#1A0A0F;font-style:normal;font-weight:500;}
+.fq{margin:32px 0;padding:24px 28px;background:#F8F4EE;border-left:3px solid #7B1427;}
+.fq-text{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-weight:400;font-style:italic;color:#1A0A0F;line-height:1.6;margin-bottom:8px;}
+.fq-attr{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#7B1427;}
+.pillars{display:flex;flex-direction:column;gap:10px;margin-top:32px;}
+.pillar{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:#F8F4EE;border:1px solid rgba(123,20,39,.08);transition:all .3s;}
+.pillar:hover{border-color:rgba(123,20,39,.25);}
+.p-ico{width:34px;height:34px;background:#7B1427;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.p-title{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#7B1427;font-weight:500;margin-bottom:3px;}
+.p-body{font-size:11px;color:#6B6B6B;font-weight:300;line-height:1.7;}
+
+/* Founder card */
+.founder-photo{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#5C0F1D 0%,#7B1427 45%,#A82040 100%);position:relative;overflow:hidden;margin-bottom:24px;}
+.founder-photo::before{content:’’;position:absolute;bottom:0;left:0;right:0;height:65%;background:linear-gradient(to top,rgba(92,15,29,.92),transparent);}
+.fmono{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);z-index:2;opacity:.3;}
+.fover{position:absolute;bottom:20px;left:20px;right:20px;z-index:3;}
+.fover-name{font-family:‘Cormorant Garamond’,serif;font-size:24px;font-weight:600;color:#fff;letter-spacing:2px;line-height:1.1;}
+.fover-title{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:5px;}
+.fb-creds{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.fb-cred{padding:4px 9px;background:rgba(123,20,39,.07);border:1px solid rgba(123,20,39,.15);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#7B1427;}
+.fb{font-size:12px;font-weight:300;color:#6B6B6B;line-height:1.9;margin-bottom:12px;}
+.fb em{color:#1A0A0F;font-style:normal;font-weight:500;}
+
+/* ── PROMISE ── */
+.promise-section{padding:100px 56px;background:#7B1427;position:relative;overflow:hidden;}
+.promise-section::after{content:’’;position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.promise-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:48px;}
+.promise-title{font-family:‘Cormorant Garamond’,serif;font-size:clamp(34px,5vw,60px);font-weight:300;line-height:1.15;color:#fff;max-width:680px;}
+.promise-title strong{font-weight:700;font-style:italic;}
+.stats-row{display:flex;flex-wrap:wrap;gap:2px;width:100%;max-width:860px;justify-content:center;}
+.stat{flex:1;min-width:190px;padding:36px 24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);text-align:center;}
+.stat-val{font-family:‘Cormorant Garamond’,serif;font-size:52px;font-weight:700;color:#fff;line-height:1;margin-bottom:7px;}
+.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:300;}
+
+/* ── QUOTE ── */
+.quote-section{padding:90px 56px;text-align:center;background:#F8F4EE;position:relative;}
+.quote-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.bq{font-family:‘Cormorant Garamond’,serif;font-size:clamp(26px,4vw,50px);font-weight:300;font-style:italic;color:#1A0A0F;line-height:1.4;max-width:760px;margin:0 auto 20px;}
+.bq strong{color:#7B1427;font-weight:700;font-style:normal;}
+.qa{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#6B6B6B;}
+
+/* ── M&A ── */
+.ma-section{padding:100px 56px;background:#fff;position:relative;}
+.ma-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.ma-header{text-align:center;max-width:680px;margin:0 auto 64px;}
+.ma-stat{max-width:860px;margin:0 auto 64px;padding:32px 40px;background:#7B1427;display:flex;align-items:center;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.ma-stat::after{content:’’;position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.ma-stat-num{font-family:‘Cormorant Garamond’,serif;font-size:52px;font-weight:700;color:#fff;line-height:1;position:relative;z-index:1;flex-shrink:0;}
+.ma-stat-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;position:relative;z-index:1;}
+.ma-stat-divider{width:1px;height:60px;background:rgba(255,255,255,.2);flex-shrink:0;}
+.ma-stat-text{font-family:‘Cormorant Garamond’,serif;font-size:18px;font-style:italic;font-weight:300;color:rgba(255,255,255,.88);line-height:1.6;position:relative;z-index:1;flex:1;min-width:200px;}
+.ma-grid{display:flex;flex-wrap:wrap;gap:2px;max-width:1200px;margin:0 auto 48px;}
+.ma-card{flex:1;min-width:280px;padding:36px 28px;background:#F8F4EE;border:1px solid rgba(123,20,39,.08);text-align:center;transition:all .3s;}
+.ma-card:hover{border-color:rgba(123,20,39,.25);box-shadow:0 10px 36px rgba(123,20,39,.08);transform:translateY(-3px);}
+.ma-ico{font-size:30px;margin-bottom:14px;}
+.ma-title{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:#1A0A0F;margin-bottom:8px;}
+.ma-body{font-size:12px;font-weight:300;color:#6B6B6B;line-height:1.8;}
+.ma-body strong{color:#7B1427;}
+
+/* ── CONTACT ── */
+.contact-section{padding:100px 56px;background:#F8F4EE;position:relative;}
+.contact-section::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(123,20,39,.2),transparent);}
+.form-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.form-row-2{display:flex;gap:14px;flex-wrap:wrap;}
+.form-row-2 .form-field{flex:1;min-width:200px;}
+.flabel{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7B1427;font-weight:500;}
+.finput{padding:13px 14px;background:#fff;border:1px solid rgba(123,20,39,.15);border-bottom:2px solid rgba(123,20,39,.2);font-family:‘Montserrat’,sans-serif;font-size:12px;font-weight:300;color:#1A0A0F;outline:none;width:100%;transition:all .3s;}
+.finput:focus{border-color:#7B1427;box-shadow:0 4px 12px rgba(123,20,39,.08);}
+.finput::placeholder{color:rgba(107,107,107,.5);font-size:11px;}
+select.finput{cursor:pointer;appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘12’ height=‘8’ viewBox=‘0 0 12 8’%3E%3Cpath d=‘M1 1l5 5 5-5’ stroke=’%237B1427’ stroke-width=‘1.5’ fill=‘none’ stroke-linecap=‘round’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 12px center;background-color:#fff;}
+textarea.finput{resize:vertical;min-height:130px;}
+.fsubmit{width:100%;padding:15px;background:#7B1427;color:#fff;font-family:‘Montserrat’,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;margin-top:6px;transition:background .3s;}
+.fsubmit:hover{background:#A82040;}
+.fsuccess{display:none;margin-top:14px;padding:14px;background:rgba(34,139,34,.08);border:1px solid rgba(34,139,34,.2);font-size:12px;color:#228B22;font-weight:300;}
+.contact-info{margin-top:8px;}
+.ci-badge{padding:24px 28px;background:#fff;border:1px solid rgba(123,20,39,.1);border-left:3px solid #7B1427;margin-bottom:28px;}
+.ci-badge-title{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:#1A0A0F;margin-bottom:7px;}
+.ci-badge-body{font-size:12px;font-weight:300;color:#6B6B6B;line-height:1.8;}
+.ci-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(123,20,39,.5);margin-bottom:5px;margin-top:18px;}
+.ci-val{font-size:13px;color:#1A0A0F;font-weight:300;}
+.ci-val a{color:#7B1427;text-decoration:none;}
+.founder-mini{margin-top:24px;padding:20px;background:#fff;border:1px solid rgba(123,20,39,.1);display:flex;align-items:center;gap:14px;}
+.founder-mini-ico{width:50px;height:50px;background:#7B1427;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.founder-mini-name{font-family:‘Cormorant Garamond’,serif;font-size:16px;font-weight:600;color:#1A0A0F;}
+.founder-mini-title{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7B1427;margin-top:3px;}
+
+/* ── FOOTER ── */
+footer{padding:44px 56px;background:#1A0A0F;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+.fn{font-family:‘Cormorant Garamond’,serif;font-size:17px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#fff;}
+.ft{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.35);font-style:italic;font-family:‘Cormorant Garamond’,serif;}
+.fc{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:1px;}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+nav{padding:0 20px;}
+.nav-right{display:none;}
+.hamburger{display:flex;}
+.drawer{padding:16px 20px 24px;}
+.hero-content{padding:0 24px;}
+.sdots{left:24px;}.slabel{display:none;}
+.hub-section,.svcs-section,.clin-section,.who-section,.promise-section,.quote-section,.ma-section,.contact-section{padding:72px 20px;}
+footer{padding:28px 20px;}
+.two-col{gap:40px;}
+.ma-stat{padding:24px;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="40" height="27" viewBox="0 0 84 56" fill="none">
+      <circle cx="28" cy="28" r="24" stroke="#7B1427" stroke-width="2.5" fill="none"/>
+      <circle cx="56" cy="28" r="24" stroke="#7B1427" stroke-width="2.5" fill="none"/>
+      <path d="M42 5.6A24 24 0 0 1 42 50.4A24 24 0 0 1 42 5.6Z" fill="#7B1427" fill-opacity=".15"/>
+      <circle cx="42" cy="28" r="3.5" fill="#7B1427"/>
+    </svg>
+    <div><div class="nav-name">Kerano</div><div class="nav-sub">Health Partners</div></div>
+  </a>
+  <div class="nav-right">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#ma" class="nav-link">M&amp;A</a>
+    <a href="#who" class="nav-link">Who We Are</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#contact" class="nav-cta">Schedule a Call</a>
+  </div>
+  <div class="hamburger" id="hbg" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="#services" onclick="closeDrawer()">Services</a>
+  <a href="#ma" onclick="closeDrawer()">M&amp;A Advisory</a>
+  <a href="#who" onclick="closeDrawer()">Who We Are</a>
+  <a href="#contact" onclick="closeDrawer()">Contact</a>
+  <a href="#contact" class="dcta" onclick="closeDrawer()">Schedule a Consultation</a>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="scenes">
+    <div class="scene s1 active" id="sc1">
+      <div style="position:absolute;top:-5%;left:40%;width:20%;height:70%;background:radial-gradient(ellipse at 50% 0%,rgba(210,230,255,.16) 0%,transparent 75%);"></div>
+      <div style="position:absolute;top:28%;right:12%;width:88px;height:60px;border:1px solid rgba(100,160,220,.25);background:rgba(10,30,60,.5);">
+        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 88 60" fill="none">
+          <polyline points="0,38 12,38 18,22 24,50 30,30 36,38 52,38 58,24 64,46 72,32 88,32" stroke="rgba(0,255,180,.55)" stroke-width="1.5" fill="none" stroke-dasharray="220" stroke-dashoffset="220">
+            <animate attributeName="stroke-dashoffset" from="220" to="0" dur="2s" repeatCount="indefinite"/>
+          </polyline>
+        </svg>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(5,12,22,.85),transparent);"></div>
+    </div>
+    <div class="scene s2" id="sc2">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.45" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle cx="50" cy="50" r="4" fill="rgba(123,20,39,.8)"/>
+        <circle cx="50" cy="50" r="8" fill="none" stroke="rgba(123,20,39,.3)" stroke-width=".5"><animate attributeName="r" from="8" to="22" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="2s" repeatCount="indefinite"/></circle>
+        <circle cx="22" cy="28" r="3" fill="rgba(123,20,39,.6)"/>
+        <circle cx="75" cy="35" r="2.5" fill="rgba(123,20,39,.5)"/>
+        <circle cx="30" cy="68" r="3.5" fill="rgba(123,20,39,.6)"/>
+        <line x1="50" y1="50" x2="22" y2="28" stroke="rgba(123,20,39,.3)" stroke-width=".4" stroke-dasharray="2 2"><animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.5s" repeatCount="indefinite"/></line>
+        <line x1="50" y1="50" x2="75" y2="35" stroke="rgba(123,20,39,.3)" stroke-width=".4" stroke-dasharray="2 2"><animate attributeName="stroke-dashoffset" from="8" to="0" dur="1.8s" repeatCount="indefinite"/></line>
+        <line x1="50" y1="50" x2="30" y2="68" stroke="rgba(123,20,39,.3)" stroke-width=".4" stroke-dasharray="2 2"><animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite"/></line>
+      </svg>
+    </div>
+    <div class="scene s3" id="sc3">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.25" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="50" y1="45" x2="0" y2="100" stroke="rgba(255,180,80,.5)" stroke-width=".5"/>
+        <line x1="50" y1="45" x2="100" y2="100" stroke="rgba(255,180,80,.5)" stroke-width=".5"/>
+        <line x1="50" y1="45" x2="0" y2="0" stroke="rgba(255,180,80,.3)" stroke-width=".4"/>
+        <line x1="50" y1="45" x2="100" y2="0" stroke="rgba(255,180,80,.3)" stroke-width=".4"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="h-ey">Management Services Organization</p>
+    <h1 class="h-title">The operating system<br>for your <strong>medical practice.</strong></h1>
+    <p class="h-tag"><em>Practice medicine.</em><br>We'll handle the rest.</p>
+    <div class="h-btns">
+      <a href="#contact" class="btn-p">Schedule a Consultation</a>
+      <a href="#services" class="btn-s">Explore Services</a>
+    </div>
+  </div>
+  <div class="sdots">
+    <div class="sdot active" onclick="goScene(0)"></div>
+    <div class="sdot" onclick="goScene(1)"></div>
+    <div class="sdot" onclick="goScene(2)"></div>
+  </div>
+  <div class="slabel" id="slabel">Operating Theatre</div>
+</section>
+
+<!-- TICKER -->
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="titem"><div class="tdot"></div>Full Revenue Cycle Management</div>
+    <div class="titem"><div class="tdot"></div>HR &amp; Compliance</div>
+    <div class="titem"><div class="tdot"></div>Bookkeeping &amp; Accounting</div>
+    <div class="titem"><div class="tdot"></div>Strategic Advisory</div>
+    <div class="titem"><div class="tdot"></div>ASC Operations Management</div>
+    <div class="titem"><div class="tdot"></div>Credentialing &amp; Enrollment</div>
+    <div class="titem"><div class="tdot"></div>Payer Contracting</div>
+    <div class="titem"><div class="tdot"></div>Denial Management</div>
+    <div class="titem"><div class="tdot"></div>Full Revenue Cycle Management</div>
+    <div class="titem"><div class="tdot"></div>HR &amp; Compliance</div>
+    <div class="titem"><div class="tdot"></div>Bookkeeping &amp; Accounting</div>
+    <div class="titem"><div class="tdot"></div>Strategic Advisory</div>
+    <div class="titem"><div class="tdot"></div>ASC Operations Management</div>
+    <div class="titem"><div class="tdot"></div>Credentialing &amp; Enrollment</div>
+    <div class="titem"><div class="tdot"></div>Payer Contracting</div>
+    <div class="titem"><div class="tdot"></div>Denial Management</div>
+  </div>
+</div>
+
+<!-- HUB -->
+
+<section class="hub-section" id="hub">
+  <div class="two-col">
+    <div class="col-left">
+      <p class="eyebrow">Central Intelligence</p>
+      <h2 class="sec-title">One partner.<br><strong>Every system.</strong></h2>
+      <p class="sec-body">Kerano is the administrative backbone of your practice — a single, unified MSO that manages every non-clinical function so your physicians can do what they were trained to do: care for patients.</p>
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px;">
+        <div class="srow"><div class="sico">💊</div><div><div class="srtitle">Revenue Cycle Management</div><div class="srsub">Billing, coding, claims, collections</div></div></div>
+        <div class="srow"><div class="sico">👥</div><div><div class="srtitle">HR &amp; Compliance</div><div class="srsub">Payroll, onboarding, HIPAA, policies</div></div></div>
+        <div class="srow"><div class="sico">📊</div><div><div class="srtitle">Bookkeeping &amp; Accounting</div><div class="srsub">Financials, reporting, cash flow</div></div></div>
+        <div class="srow"><div class="sico">🎯</div><div><div class="srtitle">Strategic Advisory</div><div class="srsub">Growth, ASC development, M&amp;A</div></div></div>
+      </div>
+    </div>
+    <div class="col-right">
+      <svg class="hub-svg-wrap" viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="230" cy="230" r="190" stroke="rgba(123,20,39,.12)" stroke-width="1" stroke-dasharray="4 7"/>
+        <circle cx="230" cy="230" r="130" stroke="rgba(123,20,39,.18)" stroke-width="1" stroke-dasharray="3 6"/>
+        <line x1="230" y1="178" x2="230" y2="106" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl1"/>
+        <line x1="271" y1="200" x2="350" y2="154" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl2"/>
+        <line x1="271" y1="262" x2="350" y2="308" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl3"/>
+        <line x1="230" y1="284" x2="230" y2="356" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl1"/>
+        <line x1="189" y1="262" x2="110" y2="308" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl2"/>
+        <line x1="189" y1="200" x2="110" y2="154" stroke="rgba(123,20,39,.3)" stroke-width="1.5" stroke-dasharray="6 6" class="dl3"/>
+        <circle cx="230" cy="230" r="62" fill="rgba(123,20,39,.07)" class="ca"/>
+        <circle cx="230" cy="230" r="52" fill="#7B1427"/>
+        <circle cx="220" cy="228" r="17" stroke="white" stroke-width="2" fill="none"/>
+        <circle cx="240" cy="228" r="17" stroke="white" stroke-width="2" fill="none"/>
+        <circle cx="230" cy="228" r="3" fill="white"/>
+        <text x="230" y="256" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="2" fill="rgba(255,255,255,.65)">KHP</text>
+        <circle cx="230" cy="72" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="230" y="65" text-anchor="middle" font-size="18">💊</text>
+        <text x="230" y="79" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">RCM</text>
+        <circle cx="372" cy="144" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="372" y="137" text-anchor="middle" font-size="18">👥</text>
+        <text x="372" y="151" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">HR</text>
+        <circle cx="372" cy="316" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="372" y="309" text-anchor="middle" font-size="18">📊</text>
+        <text x="372" y="323" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">Finance</text>
+        <circle cx="230" cy="388" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="230" y="381" text-anchor="middle" font-size="18">🏥</text>
+        <text x="230" y="395" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">ASC</text>
+        <circle cx="88" cy="316" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="88" y="309" text-anchor="middle" font-size="18">🎯</text>
+        <text x="88" y="323" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">Advisory</text>
+        <circle cx="88" cy="144" r="36" fill="#F8F4EE" stroke="#7B1427" stroke-width="1.5" class="np"/>
+        <text x="88" y="137" text-anchor="middle" font-size="18">📋</text>
+        <text x="88" y="151" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="#7B1427">Compliance</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- SERVICES -->
+
+<section class="svcs-section" id="services">
+  <div class="svcs-hdr">
+    <p class="eyebrow-center">What We Manage</p>
+    <h2 class="sec-title-center">White-glove services.<br><strong>Full coverage.</strong></h2>
+  </div>
+  <div class="svcs-grid">
+    <div class="sc"><div class="sn">01</div><div class="si">💊</div><div class="stitle">Revenue Cycle Management</div><div class="sdesc">End-to-end RCM that maximizes collections and eliminates revenue leakage.</div><ul class="slist"><li>Medical Billing &amp; Coding</li><li>Claims Submission &amp; Follow-Up</li><li>Denial Management</li><li>Payer Contracting</li><li>Credentialing &amp; Enrollment</li></ul></div>
+    <div class="sc"><div class="sn">02</div><div class="si">👥</div><div class="stitle">HR &amp; Compliance</div><div class="sdesc">Complete HR infrastructure and regulatory compliance management.</div><ul class="slist"><li>Staff Onboarding &amp; Offboarding</li><li>Payroll Administration</li><li>HIPAA &amp; Regulatory Compliance</li><li>Policy &amp; Procedure Development</li><li>Benefits Administration</li></ul></div>
+    <div class="sc"><div class="sn">03</div><div class="si">📊</div><div class="stitle">Bookkeeping &amp; Accounting</div><div class="sdesc">Financial clarity from daily bookkeeping to strategic reporting.</div><ul class="slist"><li>Monthly Financial Statements</li><li>Accounts Payable &amp; Receivable</li><li>Cash Flow Management</li><li>Tax Preparation Support</li><li>Budget &amp; Forecast Analysis</li></ul></div>
+    <div class="sc"><div class="sn">04</div><div class="si">🎯</div><div class="stitle">Strategic Advisory</div><div class="sdesc">Senior-level guidance to position your practice for sustainable growth.</div><ul class="slist"><li>Practice Growth Strategy</li><li>ASC Development &amp; Optimization</li><li>Payer Strategy &amp; Negotiation</li><li>M&amp;A Advisory</li><li>Physician Partnership Structuring</li></ul></div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- HOW IT WORKS -->
+
+<section class="clin-section">
+  <div class="two-col">
+    <div class="col-left">
+      <p class="eyebrow">How It Works</p>
+      <h2 class="sec-title">Every task.<br><strong>Handled.</strong></h2>
+      <p class="sec-body">From the moment a patient walks in to the moment a claim is collected — Kerano manages every administrative touchpoint so nothing falls through the cracks.</p>
+      <div style="margin-top:28px;"><a href="#contact" class="btn-p">See How We Work</a></div>
+    </div>
+    <div class="col-right">
+      <div class="ws"><div class="wi">🏥</div><div class="winfo"><div class="wl">Patient Visit</div><div class="wd">Documentation &amp; charge capture initiated</div></div><div class="wb wbr">Active</div></div>
+      <div class="ws"><div class="wi">💊</div><div class="winfo"><div class="wl">Coding &amp; Billing</div><div class="wd">ICD-10 &amp; CPT codes assigned by KHP team</div></div><div class="wb wbr">In Progress</div></div>
+      <div class="ws"><div class="wi">📤</div><div class="winfo"><div class="wl">Claim Submission</div><div class="wd">Clean claim submitted within 24 hours</div></div><div class="wb wba">Submitted</div></div>
+      <div class="ws"><div class="wi">🔍</div><div class="winfo"><div class="wl">Denial Management</div><div class="wd">Automated tracking &amp; appeal filing</div></div><div class="wb wba">Monitoring</div></div>
+      <div class="ws"><div class="wi">💵</div><div class="winfo"><div class="wl">Payment Posted</div><div class="wd">ERA reconciled &amp; posted to ledger</div></div><div class="wb wbg">Collected</div></div>
+      <div class="ws"><div class="wi">📊</div><div class="winfo"><div class="wl">Financial Reporting</div><div class="wd">P&amp;L, AR aging, collections summary</div></div><div class="wb wbg">Complete</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- WHO WE ARE -->
+
+<section class="who-section" id="who">
+  <div class="who-header">
+    <p class="eyebrow-center">Who We Are</p>
+    <h2 class="sec-title-center" style="font-size:clamp(34px,4vw,54px);">Built by someone who<br><strong>lived the problem.</strong></h2>
+  </div>
+  <div class="two-col">
+    <div class="col-left-wide">
+      <p class="who-ey">The Founding Story</p>
+      <h3 class="who-hl">A system that was<br><strong>failing the people</strong><br>who needed it most.</h3>
+      <p class="who-body">Across a decade spent inside some of healthcare's most demanding environments — from fast-moving urgent care centers to the hallways of academic medical institutions, from the precision of interventional pain management to the frontier of digital health — <em>Phillip Ndowu saw the same story repeat itself, over and over again.</em></p>
+      <p class="who-body">Brilliant physicians. Committed staff. Practices that genuinely wanted to do right by their patients. And yet, buried under mountains of billing denials, HR paperwork, compliance audits, credentialing renewals, and financial reports that no one had time to read — <em>the clinical mission was suffocating.</em></p>
+      <p class="who-body">The problem was never the medicine. It was everything around the medicine.</p>
+      <div class="fq">
+        <p class="fq-text">"Physicians didn't train for a decade to spend their evenings on hold with insurance companies. They trained to heal people. My job is to give that time back."</p>
+        <p class="fq-attr">— Phillip Ndowu, MPH · Founder, Kerano Health Partners</p>
+      </div>
+      <p class="who-body">Kerano Health Partners was built as the answer to that broken reality. Not another vendor. Not another software platform. <em>A true operational partner</em> — one that embeds into the fabric of your practice and handles every administrative function with the same precision and care your clinical team brings to patient care.</p>
+      <p class="who-body">In 2024, Phillip went one step further — <em>he acquired his own interventional pain management practice.</em> Not because he needed to. Because to truly serve practice owners, he had to stand in their shoes. That decision transformed Kerano from a consulting firm into something rarer: an MSO led by someone who has operated from both sides of the table.</p>
+      <p class="who-ey" style="margin-top:44px;">Our Mission</p>
+      <div class="pillars">
+        <div class="pillar"><div class="p-ico">🏥</div><div><div class="p-title">Protect the Clinical Mission</div><div class="p-body">Every system we build exists for one reason: to keep physicians focused on patients and free from administrative noise.</div></div></div>
+        <div class="pillar"><div class="p-ico">🤝</div><div><div class="p-title">Partnership Over Vendor Relationships</div><div class="p-body">We don't send invoices and disappear. We sit at the table with you, understand your goals, and build systems that grow as your practice grows.</div></div></div>
+        <div class="pillar"><div class="p-ico">⚡</div><div><div class="p-title">Operational Excellence as Standard</div><div class="p-body">Every claim, every report, every HR touchpoint is executed with precision — because your practice deserves nothing less.</div></div></div>
+        <div class="pillar"><div class="p-ico">📈</div><div><div class="p-title">Build for Growth</div><div class="p-body">The practices that win the next decade will have infrastructure that scales. Kerano builds the operational foundation that makes that possible.</div></div></div>
+      </div>
+    </div>
+    <div class="col-right-wide">
+      <div class="founder-photo">
+        <div class="fmono">
+          <svg width="110" height="74" viewBox="0 0 84 56" fill="none">
+            <circle cx="28" cy="28" r="24" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="56" cy="28" r="24" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="42" cy="28" r="4" fill="white"/>
+          </svg>
+        </div>
+        <div class="fover">
+          <div class="fover-name">Phillip Ndowu</div>
+          <div class="fover-title">MPH · Founder &amp; Managing Director · Kerano Health Partners</div>
+        </div>
+      </div>
+      <div class="fb-creds">
+        <div class="fb-cred">B.S. Biology · CBU</div>
+        <div class="fb-cred">B.A. Communication · CBU</div>
+        <div class="fb-cred">MPH · Emory University</div>
+        <div class="fb-cred">Practice Owner · 2024</div>
+      </div>
+      <p class="fb"><em>Phillip Ndowu is not a consultant who studied healthcare from the outside.</em> He is a healthcare operations executive who has lived it — building, scaling, and transforming practices across urgent care, academic medicine, digital health, and interventional pain management over the span of a decade.</p>
+      <p class="fb">His academic foundation — a B.S. in Biology and B.A. in Communication from California Baptist University, followed by a Master of Public Health in Healthcare Management from <em>Emory University</em> — gave him a rare dual lens: the clinical rigor to understand how care is delivered, and the systems thinking to understand how it is managed.</p>
+      <p class="fb">In 2024, he made a decision few consultants ever make: <em>he acquired his own interventional pain management practice</em>, stepping fully into the role of practice owner. The insight that followed is what makes Kerano's approach categorically different from any other MSO in the market.</p>
+      <p class="fb">What few know about Phillip is that the same discipline driving his operational rigor has always had a creative counterpart. <em>A classically trained musician</em> (clarinet, flute, and upright bass), <em>an award-winning photojournalist</em>, and a student of craft in everything he touches — Phillip brings to Kerano what he brings to everything: an unrelenting eye for what could be better, and the patience to build it right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+
+<section class="promise-section">
+  <div class="promise-inner">
+    <h2 class="promise-title">Time is the most precious<br>resource a physician has.<br><strong>Kerano gives it back.</strong></h2>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">15+</div><div class="stat-lbl">Hours per week lost to admin</div></div>
+      <div class="stat"><div class="stat-val">78%</div><div class="stat-lbl">Of physicians report burnout</div></div>
+      <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">Partner for every back-office need</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+
+<section class="quote-section">
+  <p class="bq">"Practice medicine.<br><strong>We'll handle the rest."</strong></p>
+  <p class="qa">Kerano Health Partners · KHP</p>
+</section>
+
+<!-- M&A -->
+
+<section class="ma-section" id="ma">
+  <div class="ma-header">
+    <p class="eyebrow-center">M&amp;A Advisory</p>
+    <h2 class="sec-title-center" style="font-size:clamp(34px,4vw,54px);">End-to-end deal support.<br><strong>White-glove, start to close.</strong></h2>
+    <p class="sec-body" style="text-align:center;max-width:640px;margin:0 auto;">Whether you're acquiring your first practice or scaling a portfolio, Kerano's M&amp;A advisory team guides you through every stage of the transaction — with the operational fluency that only comes from having sat on both sides of the table.</p>
+  </div>
+  <div class="ma-stat">
+    <div>
+      <div class="ma-stat-label">Deal Closure Completed</div>
+      <div class="ma-stat-num">$5M+</div>
+    </div>
+    <div class="ma-stat-divider"></div>
+    <div class="ma-stat-text">Kerano has facilitated over $5 million in practice acquisitions — structuring deals, navigating due diligence, and closing transactions that position our partners for long-term growth.</div>
+  </div>
+  <div class="ma-grid">
+    <div class="ma-card"><div class="ma-ico">🔍</div><div class="ma-title">Deal Sourcing</div><div class="ma-body">We identify and vet acquisition targets that align with your clinical, geographic, and financial criteria — bringing proprietary deal flow that never hits the open market.</div></div>
+    <div class="ma-card"><div class="ma-ico">📝</div><div class="ma-title">LOI Advisory</div><div class="ma-body">We craft and negotiate Letters of Intent that protect your interests from the first offer — structuring terms, exclusivity windows, and contingencies that set the deal up for success.</div></div>
+    <div class="ma-card"><div class="ma-ico">🔬</div><div class="ma-title">Due Diligence Support</div><div class="ma-body">Deep operational, financial, and compliance due diligence — reviewing revenue cycles, payer contracts, staffing models, and regulatory exposure so there are no surprises after close.</div></div>
+    <div class="ma-card"><div class="ma-ico">💰</div><div class="ma-title">Capital Financing</div><div class="ma-body">Through our network of institutional partners, Kerano can facilitate <strong>100% financing</strong> of practice acquisitions — removing capital as a barrier to qualified buyers.</div></div>
+    <div class="ma-card"><div class="ma-ico">🤝</div><div class="ma-title">Post-Acquisition Support</div><div class="ma-body">The deal closing is day one, not the finish line. Kerano stays embedded post-close — integrating operations, onboarding staff, and protecting revenue from day one.</div></div>
+    <div class="ma-card"><div class="ma-ico">📈</div><div class="ma-title">Acquisition Growth Strategy</div><div class="ma-body">We build the 12–36 month roadmap for every acquired practice — optimizing the revenue cycle, right-sizing the team, and positioning the asset for its next stage of growth.</div></div>
+  </div>
+  <div style="text-align:center;"><a href="#contact" class="btn-p">Discuss an Acquisition</a></div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact-section" id="contact">
+  <div class="two-col">
+    <div class="col-left">
+      <p class="eyebrow">Get In Touch</p>
+      <h2 class="sec-title">Ready to enter a<br><strong>new era?</strong></h2>
+      <p class="sec-body" style="margin-bottom:36px;">Tell us about your practice and a Kerano advisor will reach out within one business day to schedule your complimentary consultation.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row-2">
+          <div class="form-field"><label class="flabel">Full Name *</label><input type="text" class="finput" placeholder="Dr. Jane Smith" required/></div>
+          <div class="form-field"><label class="flabel">Organization Name *</label><input type="text" class="finput" placeholder="Smith Orthopedics Group" required/></div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-field"><label class="flabel">Location *</label><input type="text" class="finput" placeholder="City, State" required/></div>
+          <div class="form-field">
+            <label class="flabel">Practice Type *</label>
+            <select class="finput" required>
+              <option value="" disabled selected>Select practice type</option>
+              <option>Private Medical Practice</option>
+              <option>Ambulatory Surgery Center (ASC)</option>
+              <option>Multi-Specialty Group</option>
+              <option>Urgent Care / Immediate Care</option>
+              <option>Academic Medical Center</option>
+              <option>Digital Health / Telehealth</option>
+              <option>Interventional Pain Management</option>
+              <option>Orthopedics</option>
+              <option>Cardiology</option>
+              <option>Primary Care</option>
+              <option>Physician Group</option>
+              <option>Private Equity</option>
+              <option>Other Specialty</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field"><label class="flabel">Email Address *</label><input type="email" class="finput" placeholder="your@email.com" required/></div>
+        <div class="form-field"><label class="flabel">How Can We Help?</label><textarea class="finput" placeholder="Tell us about your practice, your current challenges, and what you're hoping Kerano can help you achieve..."></textarea></div>
+        <button type="submit" class="fsubmit">Send Message — We'll Be In Touch</button>
+        <div class="fsuccess" id="fsuccess">Thank you. A Kerano advisor will reach out within one business day.</div>
+      </form>
+    </div>
+    <div class="col-right">
+      <div class="contact-info">
+        <div class="ci-badge">
+          <div class="ci-badge-title">Schedule a Consultation</div>
+          <div class="ci-badge-body">Every engagement starts with a conversation. We'll learn about your practice, identify your biggest operational gaps, and show you exactly how Kerano can help — no obligation, no pressure.</div>
+        </div>
+        <div class="ci-label">Email</div>
+        <div class="ci-val"><a href="mailto:info@keranohealthpartners.com">info@keranohealthpartners.com</a></div>
+        <div class="ci-label">Phone</div>
+        <div class="ci-val"><a href="tel:+10000000000">+1 (000) 000-0000</a></div>
+        <div class="ci-label">Founder Direct</div>
+        <div class="ci-val"><a href="mailto:phillip@keranohealthpartners.com">phillip@keranohealthpartners.com</a></div>
+        <div class="ci-label">Serving</div>
+        <div class="ci-val">Medical Practices · ASCs · Physician Groups · Private Equity Nationwide</div>
+        <div class="founder-mini">
+          <div class="founder-mini-ico">
+            <svg width="30" height="20" viewBox="0 0 84 56" fill="none">
+              <circle cx="28" cy="28" r="24" stroke="white" stroke-width="2.5" fill="none"/>
+              <circle cx="56" cy="28" r="24" stroke="white" stroke-width="2.5" fill="none"/>
+              <circle cx="42" cy="28" r="3.5" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <div class="founder-mini-name">Phillip Ndowu, MPH</div>
+            <div class="founder-mini-title">Founder &amp; Managing Director</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <svg width="34" height="23" viewBox="0 0 84 56" fill="none">
+      <circle cx="28" cy="28" r="24" stroke="white" stroke-width="2.5" fill="none"/>
+      <circle cx="56" cy="28" r="24" stroke="white" stroke-width="2.5" fill="none"/>
+      <path d="M42 5.6A24 24 0 0 1 42 50.4A24 24 0 0 1 42 5.6Z" fill="white" fill-opacity=".15"/>
+      <circle cx="42" cy="28" r="3.5" fill="white"/>
+    </svg>
+    <div><div class="fn">Kerano Health Partners</div><div class="ft">"Practice medicine. We'll handle the rest."</div></div>
+  </div>
+  <div class="fc">© 2025 Kerano Health Partners · KHP · All Rights Reserved</div>
+</footer>
+
+<script>
+// Scene cycling
+const scIds=['sc1','sc2','sc3'];
+const scLabels=['Operating Theatre','Digital Health System','Clinical Operations'];
+const dots=document.querySelectorAll('.sdot');
+let cur=0;
+function goScene(n){
+  document.getElementById(scIds[cur]).classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur=n;
+  document.getElementById(scIds[cur]).classList.add('active');
+  dots[cur].classList.add('active');
+  document.getElementById('slabel').textContent=scLabels[cur];
+}
+setInterval(()=>goScene((cur+1)%3),3000);
+
+// Nav
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.boxShadow=window.scrollY>10?'0 4px 20px rgba(123,20,39,0.08)':'none';
+});
+
+// Drawer
+function toggleDrawer(){document.getElementById('drawer').classList.toggle('open');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');}
+document.addEventListener('click',e=>{
+  const d=document.getElementById('drawer');
+  const h=document.getElementById('hbg');
+  if(d.classList.contains('open')&&!d.contains(e.target)&&!h.contains(e.target))closeDrawer();
+});
+
+// Form
+function handleSubmit(e){
+  e.preventDefault();
+  document.getElementById('fsuccess').style.display='block';
+  e.target.querySelector('.fsubmit').textContent='Message Sent ✓';
+  e.target.querySelector('.fsubmit').style.background='#228B22';
+}
+</script>
+
+</body>
+</html>
