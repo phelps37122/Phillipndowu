@@ -569,16 +569,16 @@ footer{padding:28px 20px;}
       <p class="eyebrow">Get In Touch</p>
       <h2 class="sec-title">Ready to enter a<br><strong>new era?</strong></h2>
       <p class="sec-body" style="margin-bottom:36px;">Tell us about your practice and a Kerano advisor will reach out within one business day to schedule your complimentary consultation.</p>
-      <form onsubmit="handleSubmit(event)">
+      <form action="https://formspree.io/f/mwvywzzl" method="POST" onsubmit="handleSubmit(event)">
         <div class="form-row-2">
-          <div class="form-field"><label class="flabel">Full Name *</label><input type="text" class="finput" placeholder="Dr. Jane Smith" required/></div>
-          <div class="form-field"><label class="flabel">Organization Name *</label><input type="text" class="finput" placeholder="Smith Orthopedics Group" required/></div>
+          <div class="form-field"><label class="flabel">Full Name *</label><input type="text" class="finput" placeholder="Dr. Jane Smith" name="name" required/></div>
+          <div class="form-field"><label class="flabel">Organization Name *</label><input type="text" class="finput" placeholder="Smith Orthopedics Group" name="organization" required/></div>
         </div>
         <div class="form-row-2">
-          <div class="form-field"><label class="flabel">Location *</label><input type="text" class="finput" placeholder="City, State" required/></div>
+          <div class="form-field"><label class="flabel">Location *</label><input type="text" class="finput" placeholder="City, State" name="location" required/></div>
           <div class="form-field">
             <label class="flabel">Practice Type *</label>
-            <select class="finput" required>
+            <select class="finput" name="practice_type" required>
               <option value="" disabled selected>Select practice type</option>
               <option>Private Medical Practice</option>
               <option>Ambulatory Surgery Center (ASC)</option>
@@ -596,8 +596,8 @@ footer{padding:28px 20px;}
             </select>
           </div>
         </div>
-        <div class="form-field"><label class="flabel">Email Address *</label><input type="email" class="finput" placeholder="your@email.com" required/></div>
-        <div class="form-field"><label class="flabel">How Can We Help?</label><textarea class="finput" placeholder="Tell us about your practice, your current challenges, and what you're hoping Kerano can help you achieve..."></textarea></div>
+        <div class="form-field"><label class="flabel">Email Address *</label><input type="email" class="finput" placeholder="your@email.com" name="email" required/></div>
+        <div class="form-field"><label class="flabel">How Can We Help?</label><textarea class="finput" placeholder="Tell us about your practice, your current challenges, and what you're hoping Kerano can help you achieve..." name="message"></textarea></div>
         <button type="submit" class="fsubmit">Send Message — We'll Be In Touch</button>
         <div class="fsuccess" id="fsuccess">Thank you. A Kerano advisor will reach out within one business day.</div>
       </form>
@@ -611,7 +611,7 @@ footer{padding:28px 20px;}
         <div class="ci-label">Email</div>
         <div class="ci-val"><a href="mailto:info@keranohealthpartners.com">info@keranohealthpartners.com</a></div>
         <div class="ci-label">Phone</div>
-        <div class="ci-val"><a href="tel:+10000000000">+1 (000) 000-0000</a></div>
+        <div class="ci-val"><a href="tel:+19518408851">+1 (951) 840-8851</a></div>
         <div class="ci-label">Founder Direct</div>
         <div class="ci-val"><a href="mailto:phillip@keranohealthpartners.com">phillip@keranohealthpartners.com</a></div>
         <div class="ci-label">Serving</div>
