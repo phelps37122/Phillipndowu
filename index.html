@@ -569,7 +569,7 @@ footer{padding:28px 20px;}
       <p class="eyebrow">Get In Touch</p>
       <h2 class="sec-title">Ready to enter a<br><strong>new era?</strong></h2>
       <p class="sec-body" style="margin-bottom:36px;">Tell us about your practice and a Kerano advisor will reach out within one business day to schedule your complimentary consultation.</p>
-      <form action="https://formspree.io/f/mwvywzzl" method="POST" onsubmit="handleSubmit(event)">
+      <form action="https://formspree.io/f/mwvywzzl" method="POST">
         <div class="form-row-2">
           <div class="form-field"><label class="flabel">Full Name *</label><input type="text" class="finput" placeholder="Dr. Jane Smith" name="name" required/></div>
           <div class="form-field"><label class="flabel">Organization Name *</label><input type="text" class="finput" placeholder="Smith Orthopedics Group" name="organization" required/></div>
@@ -681,10 +681,11 @@ document.addEventListener('click',e=>{
 
 // Form
 function handleSubmit(e){
-  e.preventDefault();
-  document.getElementById('fsuccess').style.display='block';
-  e.target.querySelector('.fsubmit').textContent='Message Sent ✓';
-  e.target.querySelector('.fsubmit').style.background='#228B22';
+  setTimeout(function(){
+    document.getElementById('fsuccess').style.display='block';
+    document.querySelector('.fsubmit').textContent='Message Sent ✓';
+    document.querySelector('.fsubmit').style.background='#228B22';
+  }, 500);
 }
 </script>
 
